@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontier-X | Border Surveillance Command Center</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">FX</div>
+        <div><b>FRONTIER-X</b><span>Intelligent Border Surveillance</span></div>
+      </div>
+
+      <div class="mission">
+        <strong>COMMAND CENTER</strong>
+      </div>
+
+      <nav>
+        <button class="nav active" data-page="overview">⌂ <span>Overview</span></button>
+        <button class="nav" data-page="cameras">▣ <span>Live Cameras</span></button>
+        <button class="nav" data-page="alerts">⚠ <span>Alert Center</span><em id="alertBadge">4</em></button>
+        <button class="nav" data-page="events">◷ <span>Event History</span></button>
+        <button class="nav" data-page="evidence">⬡ <span>Evidence Vault</span></button>
+        <button class="nav" data-page="analytics">◒ <span>Analytics</span></button>
+        <button class="nav" data-page="map">⌖ <span>Digital Border Map</span></button>
+        <button class="nav" data-page="assistant">✦ <span>Frontier AI</span></button>
+        <button class="nav" data-page="health">♥ <span>System Health</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="secure"><span class="dot"></span> Secure Gateway Online</div>
+        <button id="demoBtn" class="demo-btn">▶ Start Demo Mode</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="crumb">MINISTRY OF HOME AFFAIRS / BORDER SECTOR ALPHA</div>
+          <h1 id="pageTitle">Command Center</h1>
+        </div>
+        <div class="top-actions">
+          <span class="live-pill"><i></i> LIVE</span>
+          <button class="icon-btn" id="notifyBtn">🔔 <b id="notifyCount">4</b></button>
+          <div class="operator"><div class="avatar">CO</div><div><b>Command Officer</b><span>Authenticated • RBAC</span></div></div>
+        </div>
+      </header>
+
+      <section id="page-overview" class="page active">
+        <div class="hero">
+          <div>
+            <span class="eyebrow">AI-BASED VIDEO ANALYTICS</span>
+            <h2>Detection → Understanding → Response</h2>
+            <p>Use existing CCTV infrastructure to detect suspicious activity, correlate events and support faster officer response.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary" data-page-link="cameras">View Live Feeds</button>
+            <button class="secondary" data-page-link="alerts">Open Alerts</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><span>Cameras Online</span><strong id="onlineCount">12</strong><small>of 15 deployed</small></div>
+          <div class="stat danger"><span>Active Alerts</span><strong id="activeAlerts">4</strong><small>2 high priority</small></div>
+          <div class="stat"><span>Objects Tracked</span><strong id="objectsTracked">567</strong><small>540 persons • 27 vehicles</small></div>
+          <div class="stat"><span>Evidence Integrity</span><strong>100%</strong><small>SHA-256 verified</small></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="panel">
+            <div class="panel-head"><div><h3>Live Camera Wall</h3><span>AI detection overlays enabled</span></div><button class="text-btn" data-page-link="cameras">View all →</button></div>
+            <div class="camera-wall" id="miniCameras"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><h3>Priority Alerts</h3><span>Real-time event intelligence</span></div><button class="text-btn" data-page-link="alerts">All alerts →</button></div>
+            <div id="miniAlerts" class="alert-list"></div>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="panel pipeline">
+            <div class="panel-head"><div><h3>AI Detection Pipeline</h3><span>Modular analytics flow</span></div></div>
+            <div class="flow"><b>CCTV</b><i>→</i><b>AI</b><i>→</i><b>Tracking</b><i>→</i><b>Risk</b><i>→</i><b>Alert</b></div>
+            <p class="muted">Python + OpenCV + YOLO architecture • ByteTrack / DeepSORT integration-ready</p>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><h3>Risk Overview</h3><span>Current sector assessment</span></div></div>
+            <div class="risk-bars">
+              <div><span>Sector A</span><b><i style="width:78%"></i></b><strong>High</strong></div>
+              <div><span>Sector B</span><b><i style="width:42%"></i></b><strong>Medium</strong></div>
+              <div><span>Sector C</span><b><i style="width:19%"></i></b><strong>Low</strong></div>
+              <div><span>Sector D</span><b><i style="width:61%"></i></b><strong>Medium</strong></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><h3>Security Layer</h3><span>Evidence & access controls</span></div></div>
+            <div class="security-list">
+              <p><span class="ok">✓</span> RBAC authentication</p>
+              <p><span class="ok">✓</span> Encrypted communication</p>
+              <p><span class="ok">✓</span> SHA-256 evidence hash</p>
+              <p><span class="ok">✓</span> Audit activity logging</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="page-cameras" class="page">
+        <div class="page-intro"><div><span class="eyebrow">VIDEO INGESTION</span><h2>Live Camera Network</h2><p>Existing IP/RTSP feeds with AI detection and virtual-fence monitoring.</p></div><button class="primary" id="refreshCams">↻ Refresh feeds</button></div>
+        <div class="camera-grid" id="cameraGrid"></div>
+      </section>
+
+      <section id="page-alerts" class="page">
+        <div class="page-intro"><div><span class="eyebrow">EVENT INTELLIGENCE</span><h2>Alert Center</h2><p>Prioritized suspicious activity for officer verification.</p></div><button class="secondary" id="clearAlerts">Acknowledge all</button></div>
+        <div class="filter-row"><button class="filter active">All</button><button class="filter">High</button><button class="filter">Medium</button><button class="filter">Low</button></div>
+        <div id="alertsFull" class="full-list"></div>
+      </section>
+
+      <section id="page-events" class="page">
+        <div class="page-intro"><div><span class="eyebrow">HISTORICAL PATTERNS</span><h2>Event History</h2><p>Correlated incidents and incident timelines.</p></div><button class="secondary" id="exportEvents">⇩ Export report</button></div>
+        <div class="panel table-panel"><table><thead><tr><th>Time</th><th>Event</th><th>Camera</th><th>Risk</th><th>Status</th></tr></thead><tbody id="eventTable"></tbody></table></div>
+      </section>
+
+      <section id="page-evidence" class="page">
+        <div class="page-intro"><div><span class="eyebrow">BLOCKCHAIN-READY EVIDENCE</span><h2>Evidence Vault</h2><p>Evidence records with integrity hashes and audit trail.</p></div><button class="secondary" id="verifyEvidence">✓ Verify integrity</button></div>
+        <div class="evidence-grid" id="evidenceGrid"></div>
+      </section>
+
+      <section id="page-analytics" class="page">
+        <div class="page-intro"><div><span class="eyebrow">ANALYTICS</span><h2>Risk & Behaviour Analytics</h2><p>Explainable risk indicators for current surveillance data.</p></div></div>
+        <div class="analytics-grid">
+          <div class="panel chart-panel"><h3>Events by Type</h3><div class="bars"><div><i style="height:82%"></i><span>Intrusion</span></div><div><i style="height:57%"></i><span>Loitering</span></div><div><i style="height:41%"></i><span>Vehicle</span></div><div><i style="height:29%"></i><span>Tamper</span></div><div><i style="height:18%"></i><span>Night</span></div></div></div>
+          <div class="panel"><h3>Explainable Risk Score</h3><div class="score"><strong>82</strong><span>/100</span></div><p><b>Why?</b></p><ul class="clean"><li>Restricted-zone entry detected</li><li>Low-light environment</li><li>Loitering duration &gt; threshold</li><li>Cross-camera movement correlation</li></ul></div>
+          <div class="panel"><h3>Detection Summary</h3><div class="metric-line"><span>Persons</span><b>540</b></div><div class="metric-line"><span>Vehicles</span><b>27</b></div><div class="metric-line"><span>Intrusions</span><b>16</b></div><div class="metric-line"><span>False-alert review</span><b>8</b></div></div>
+        </div>
+      </section>
+
+      <section id="page-map" class="page">
+        <div class="page-intro"><div><span class="eyebrow">SITUATIONAL AWARENESS</span><h2>Digital Border Map</h2><p>Virtual fences, camera locations and current risk zones.</p></div></div>
+        <div class="panel map-panel">
+          <div class="map-canvas">
+            <div class="grid-lines"></div><div class="border-line"></div>
+            <span class="zone zone-a">RESTRICTED ZONE A</span><span class="zone zone-b">MONITOR ZONE B</span>
+            <span class="cam-pin p1">C01</span><span class="cam-pin p2">C04</span><span class="cam-pin p3">C07</span><span class="cam-pin p4">C12</span>
+            <span class="person-pin">●</span><span class="vehicle-pin">▰</span>
+          </div>
+          <div class="map-legend"><span><i class="pin red"></i> High Risk</span><span><i class="pin green"></i> Camera Online</span><span><i class="pin yellow"></i> Vehicle</span><span>━━ Virtual Fence</span></div>
+        </div>
+      </section>
+
+      <section id="page-assistant" class="page">
+        <div class="page-intro"><div><span class="eyebrow">AI ASSISTANT</span><h2>Frontier AI</h2><p>Search events, summarize incidents and query camera health in simple language.</p></div></div>
+        <div class="assistant panel">
+          <div id="chat" class="chat"><div class="bot msg"><b>Frontier AI</b><p>Hello, Command Officer. Ask me about cameras, alerts, events, evidence or risk.</p></div></div>
+          <div class="suggestions"><button>Which cameras are offline?</button><button>Show high risk events</button><button>Summarize latest incident</button><button>How is evidence protected?</button></div>
+          <form id="chatForm"><input id="chatInput" placeholder="Ask: What happened in Sector A?" autocomplete="off"><button class="primary">Send</button></form>
+        </div>
+      </section>
+
+      <section id="page-health" class="page">
+        <div class="page-intro"><div><span class="eyebrow">SYSTEM HEALTH</span><h2>Infrastructure Health</h2><p>Secure gateway, cameras and analytics services.</p></div></div>
+        <div class="health-grid"><div class="health-card"><span class="health-icon">●</span><h3>Secure Gateway</h3><b>Operational</b><small>Encryption + authentication</small></div><div class="health-card"><span class="health-icon">●</span><h3>AI Analytics</h3><b>Operational</b><small>YOLO pipeline • 28 FPS demo</small></div><div class="health-card"><span class="health-icon">●</span><h3>Evidence Store</h3><b>Operational</b><small>Integrity verification enabled</small></div><div class="health-card warn"><span class="health-icon">●</span><h3>Camera Network</h3><b>12 / 15 online</b><small>3 feeds require attention</small></div></div>
+      </section>
+
+      <footer>FRONTIER-X • SIH26187 • TECHTRAIL • Demonstration / student prototype</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
